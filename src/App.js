@@ -3,7 +3,7 @@ import Board from './components/board';
 import Button from './components/button';
 import './App.css';
 
-const BOARD_SIZE = 20;
+const BOARD_SIZE = 30;
 
 class App extends Component {
   constructor(props) {
@@ -26,7 +26,6 @@ class App extends Component {
       }
     }
     return newBoard;
-    
   }
 
   toggleCell(row, col) {
@@ -36,12 +35,8 @@ class App extends Component {
   }
 
   evaluateBoard() {
-    console.log('Evaluation --- ');
 
     let current = this.state.boardArray;
-    let blank = this.generateBlankBoard(BOARD_SIZE);
-
-
     let updated = current.map((row, rowIndex) => {
       return row.map((isAlive, colIndex) => { 
     
@@ -55,17 +50,16 @@ class App extends Component {
             bottomRight = this.getNeighborStatus(current, rowIndex + 1, colIndex + 1);
       
         let neighborStatuses = [topLeft, top, topRight, left, right, bottomLeft, bottom, bottomRight];
-        
-        let aliveNeighbors = neighborStatuses.filter(status => status === true).length;
+        let aliveNeighborsQty = neighborStatuses.filter(status => status === true).length;
         
         if (isAlive) {
-          if (aliveNeighbors < 2 || aliveNeighbors > 3)
+          if (aliveNeighborsQty < 2 || aliveNeighborsQty > 3)
             return false;
           else 
             return true;
         }
         else {
-          if (aliveNeighbors === 3)
+          if (aliveNeighborsQty === 3)
             return true;
         }
         return false;
@@ -84,12 +78,9 @@ class App extends Component {
     this.setState({ boardArray: this.generateBlankBoard( BOARD_SIZE ) });
   }
 
-
   render() {
-
     return (
       <div className='App'>
-
         <h2>Conway's Game of Life</h2>
         <Board 
           boardArray={this.state.boardArray} 
