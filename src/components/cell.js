@@ -4,7 +4,7 @@ class Cell extends React.Component {
 
 
 
-    _toggleCell() {
+    toggleCell() {
         this.props.onClick( this.props.row, this.props.col );
     }
 
@@ -16,7 +16,7 @@ class Cell extends React.Component {
         return (
             <span 
                 className={cssClasses} 
-                onClick={this._toggleCell.bind(self)}
+                onClick={this.toggleCell.bind(self)}
             ></span>
         )
     }

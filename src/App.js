@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Board from './components/board';
 import Button from './components/button';
+import store from './store';
 import './App.css';
 
 const BOARD_SIZE = 30;
@@ -67,7 +68,7 @@ class App extends Component {
     });
     this.setState({ boardArray: updated });
   }
-  /* helper function to determine out cells that are beyond the bounds of the board */
+  /* helper function to determine cells that are beyond the bounds of the board */
   getNeighborStatus(board, rowIndex, colIndex) {
     if (rowIndex < 0 || rowIndex >= BOARD_SIZE || colIndex < 0 || colIndex >= BOARD_SIZE)
       return false;
