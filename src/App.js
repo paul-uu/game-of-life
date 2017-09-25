@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Board from './components/board';
 import Button from './components/button';
-import store from './store';
+import store from './redux/store';
+import actions from './redux/actions';
 import './App.css';
 
 const BOARD_SIZE = 30;
@@ -33,10 +35,12 @@ class App extends Component {
     let board = this.state.boardArray;
     board[row][col] = board[row][col] ? false : true;
     this.setState({ boardArray: board });
+    store.dispatch( actions.toggleCell('test cell') );
   }
 
   evaluateBoard() {
 
+    store.dispatch(actions.boardStep());
     let current = this.state.boardArray;
     let updated = current.map((row, rowIndex) => {
       return row.map((isAlive, colIndex) => { 
@@ -76,6 +80,7 @@ class App extends Component {
   }
 
   clearBoard() {
+    store.dispatch(actions.resetBoard(BOARD_SIZE));
     this.setState({ boardArray: this.generateBlankBoard( BOARD_SIZE ) });
   }
 
@@ -96,4 +101,8 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  return state;
+}
+
+export default connect(mapStateToProps)(App);
