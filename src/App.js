@@ -12,76 +12,24 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      boardArray: [],
-      isEditable: true
+      boardArray: []
     }
   }
 
   componentDidMount() {
-    this.clearBoard();
-  }
-  generateBlankBoard(size) {
-    let newBoard = [];
-    for (let i = 0; i < size; i++) {
-      newBoard[i] = [];
-      for (let j = 0; j < size; j++) {
-        newBoard[i][j] = false;
-      }
-    }
-    return newBoard;
+    store.dispatch(actions.resetBoard(BOARD_SIZE));
   }
 
   toggleCell(row, col) {
-    let board = this.state.boardArray;
-    board[row][col] = board[row][col] ? false : true;
-    this.setState({ boardArray: board });
-    store.dispatch( actions.toggleCell('test cell') );
+    let board = this.props.updateBoard;
+    let updatedState = board[row][col] ? false : true;
+    store.dispatch( actions.toggleCell( row, col, updatedState ) );
   }
-
   evaluateBoard() {
-
     store.dispatch(actions.boardStep());
-    let current = this.state.boardArray;
-    let updated = current.map((row, rowIndex) => {
-      return row.map((isAlive, colIndex) => { 
-    
-        let topLeft     = this.getNeighborStatus(current, rowIndex - 1, colIndex - 1),
-            top         = this.getNeighborStatus(current, rowIndex - 1, colIndex),
-            topRight    = this.getNeighborStatus(current, rowIndex - 1, colIndex + 1),
-            left        = this.getNeighborStatus(current, rowIndex, colIndex - 1),
-            right       = this.getNeighborStatus(current, rowIndex, colIndex + 1),
-            bottomLeft  = this.getNeighborStatus(current, rowIndex + 1, colIndex - 1),
-            bottom      = this.getNeighborStatus(current, rowIndex + 1, colIndex),
-            bottomRight = this.getNeighborStatus(current, rowIndex + 1, colIndex + 1);
-      
-        let neighborStatuses = [topLeft, top, topRight, left, right, bottomLeft, bottom, bottomRight];
-        let aliveNeighborsQty = neighborStatuses.filter(status => status === true).length;
-        
-        if (isAlive) {
-          if (aliveNeighborsQty < 2 || aliveNeighborsQty > 3)
-            return false;
-          else 
-            return true;
-        }
-        else {
-          if (aliveNeighborsQty === 3)
-            return true;
-        }
-        return false;
-      });
-    });
-    this.setState({ boardArray: updated });
   }
-  /* helper function to determine cells that are beyond the bounds of the board */
-  getNeighborStatus(board, rowIndex, colIndex) {
-    if (rowIndex < 0 || rowIndex >= BOARD_SIZE || colIndex < 0 || colIndex >= BOARD_SIZE)
-      return false;
-    return board[rowIndex][colIndex]
-  }
-
   clearBoard() {
     store.dispatch(actions.resetBoard(BOARD_SIZE));
-    this.setState({ boardArray: this.generateBlankBoard( BOARD_SIZE ) });
   }
 
   render() {
@@ -89,8 +37,7 @@ class App extends Component {
       <div className='App'>
         <h2>Conway's Game of Life</h2>
         <Board 
-          boardArray={this.state.boardArray} 
-          isEditable={this.state.isEditable}
+          boardArray={this.props.updateBoard} 
           toggleCell={this.toggleCell.bind(this)}
           clickTest={this.clickTest}
         />

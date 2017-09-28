@@ -1,7 +1,7 @@
-	import React from 'react';
-	import Cell from './cell';
+import React from 'react';
+import Cell from './cell';
 
-	class Board extends React.Component {
+class Board extends React.Component {
 
 	render() {
 		return (
@@ -31,6 +31,6 @@
 			</div>
 		);
 	}
-	}
+}
 
-	export default Board;
+export default Board;

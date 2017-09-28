@@ -1,9 +1,11 @@
 const actions = {
 
-    toggleCell: cell => {
+    toggleCell: (row, col, updateTo) => {
         return {
             type: 'TOGGLE_CELL',
-            cell
+            row,
+            col,
+            updateTo
         }
     },
     boardStep: () => {
