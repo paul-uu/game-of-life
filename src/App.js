@@ -5,8 +5,7 @@ import Button from './components/button';
 import store from './redux/store';
 import actions from './redux/actions';
 import './App.css';
-
-const BOARD_SIZE = 30;
+import { BOARD_SIZE } from './constants';
 
 class App extends Component {
   constructor(props) {
