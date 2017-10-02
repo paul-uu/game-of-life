@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { BOARD_SIZE, TOGGLE_CELL, BOARD_STEP, RESET_BOARD, RANDOMIZE_BOARD } from '../../constants';
 
-function updateBoard(state = [], action) {
+function lifeBoard(state = [], action) {
 	switch (action.type) {
 
 		case TOGGLE_CELL:
@@ -67,7 +67,7 @@ function getNeighborStatus(board, rowIndex, colIndex) {
 }
 
 const rootReducer = combineReducers({
-  updateBoard
+  lifeBoard
 });
 
 export default rootReducer;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Cell from './cell';
 
 class Board extends React.Component {
@@ -31,6 +32,10 @@ class Board extends React.Component {
 			</div>
 		);
 	}
+}
+Board.propTypes = {
+	boardArray: PropTypes.array,
+	toggleCell: PropTypes.func
 }
 
 export default Board;

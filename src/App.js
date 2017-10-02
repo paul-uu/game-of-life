@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Board from './components/board';
 import Button from './components/button';
 import store from './redux/store';
@@ -15,7 +16,7 @@ class App extends Component {
 
   toggleCell(row, col) {
     let currentState = store.getState(),
-        updatedCell = !currentState.updateBoard[row][col];
+        updatedCell = !currentState.lifeBoard[row][col];
     store.dispatch( actions.toggleCell( row, col, updatedCell ) );
   }
   evaluateBoard() {
@@ -33,9 +34,8 @@ class App extends Component {
       <div className='App'>
         <h2>Conway's Game of Life</h2>
         <Board 
-          boardArray={this.props.updateBoard} 
+          boardArray={this.props.lifeBoard} 
           toggleCell={this.toggleCell.bind(this)}
-          clickTest={this.clickTest}
         />
         <Button onClick={this.randomizeBoard.bind(this)} text={'Randomize'} />
         <Button onClick={this.evaluateBoard.bind(this)} text={'Step'} />
@@ -43,6 +43,9 @@ class App extends Component {
       </div>
     );
   }
+}
+App.propTypes = {
+  lifeBoard: PropTypes.array
 }
 
 function mapStateToProps(state) {
