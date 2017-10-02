@@ -8,27 +8,24 @@ import './App.css';
 import { BOARD_SIZE } from './constants';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      boardArray: []
-    }
-  }
 
   componentDidMount() {
-    store.dispatch(actions.resetBoard(BOARD_SIZE));
+    store.dispatch(actions.resetBoard(BOARD_SIZE, false));
   }
 
   toggleCell(row, col) {
-    let board = this.props.updateBoard;
-    let updatedState = board[row][col] ? false : true;
-    store.dispatch( actions.toggleCell( row, col, updatedState ) );
+    let currentState = store.getState(),
+        updatedCell = !currentState.updateBoard[row][col];
+    store.dispatch( actions.toggleCell( row, col, updatedCell ) );
   }
   evaluateBoard() {
     store.dispatch(actions.boardStep());
   }
   clearBoard() {
-    store.dispatch(actions.resetBoard(BOARD_SIZE));
+    store.dispatch(actions.resetBoard(BOARD_SIZE, false));
+  }
+  randomizeBoard() {
+    store.dispatch(actions.randomizeBoard());
   }
 
   render() {
@@ -40,6 +37,7 @@ class App extends Component {
           toggleCell={this.toggleCell.bind(this)}
           clickTest={this.clickTest}
         />
+        <Button onClick={this.randomizeBoard.bind(this)} text={'Randomize'} />
         <Button onClick={this.evaluateBoard.bind(this)} text={'Step'} />
         <Button onClick={this.clearBoard.bind(this)} text={'Reset'} />
       </div>

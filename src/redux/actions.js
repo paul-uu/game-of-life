@@ -1,8 +1,10 @@
+import { TOGGLE_CELL, BOARD_STEP, RESET_BOARD, RANDOMIZE_BOARD } from '../constants';
+
 const actions = {
 
     toggleCell: (row, col, updateTo) => {
         return {
-            type: 'TOGGLE_CELL',
+            type: TOGGLE_CELL,
             row,
             col,
             updateTo
@@ -10,13 +12,19 @@ const actions = {
     },
     boardStep: () => {
         return {
-            type: 'BOARD_STEP'
+            type: BOARD_STEP
         }
     },
-    resetBoard: size => {
+    resetBoard: (size, cellValue) => {
         return {
-            type: 'RESET_BOARD',
-            size
+            type: RESET_BOARD,
+            size,
+            cellValue
+        }
+    },
+    randomizeBoard: () => {
+        return {
+            type: RANDOMIZE_BOARD
         }
     }
 };

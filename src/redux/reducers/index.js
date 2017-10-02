@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { BOARD_SIZE, TOGGLE_CELL, BOARD_STEP, RESET_BOARD } from '../../constants';
+import { BOARD_SIZE, TOGGLE_CELL, BOARD_STEP, RESET_BOARD, RANDOMIZE_BOARD } from '../../constants';
 
 function updateBoard(state = [], action) {
 	switch (action.type) {
@@ -40,19 +40,22 @@ function updateBoard(state = [], action) {
 			});
 
 		case RESET_BOARD:
-			return resetBoardState(action.size);
+			return generateBoard(action.size, action.cellValue);
+
+		case RANDOMIZE_BOARD:
+			return generateBoard(BOARD_SIZE);
 
 		default:
 			return state;
 	}
 }
 
-function resetBoardState(size) {
+function generateBoard(size, cellValue) {
 	let newBoard = [];
 	for (let i = 0; i < size; i++) {
 		newBoard[i] = [];
 		for (let j = 0; j < size; j++) {
-			newBoard[i][j] = false;
+			newBoard[i][j] = cellValue === undefined ? Math.random() >= 0.5 : false;
 		}
 	}
 	return newBoard;
