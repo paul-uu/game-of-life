@@ -5,7 +5,7 @@ import {
 	RANDOMIZE_BOARD,
 	UNDO,
 	REDO
-} from '../constants';
+} from './constants';
 
 const actions = {
 	toggleCell: (row, col, updateTo) => ({

@@ -1,4 +1,4 @@
-import { BOARD_SIZE, TOGGLE_CELL, BOARD_STEP, RESET_BOARD, RANDOMIZE_BOARD } from '../../constants';
+import { BOARD_SIZE, TOGGLE_CELL, BOARD_STEP, RESET_BOARD, RANDOMIZE_BOARD } from '../constants';
 
 function lifeBoard(state = [], action) {
 	switch (action.type) {

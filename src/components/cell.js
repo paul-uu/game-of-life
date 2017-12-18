@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import store from '../redux/store';
-import actions from '../redux/actions';
+import store from '../store';
+import actions from '../actions';
 
 class Cell extends React.Component {
 

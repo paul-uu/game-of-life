@@ -4,8 +4,8 @@ import LifeBoardContainer from './containers/LifeBoardContainer';
 import Button from './components/button';
 import UndoButton from './containers/UndoButton';
 import RedoButton from './containers/RedoButton';
-import store from './redux/store';
-import actions from './redux/actions';
+import store from './store';
+import actions from './actions';
 import './App.css';
 import { BOARD_SIZE } from './constants';
 

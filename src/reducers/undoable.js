@@ -1,4 +1,4 @@
-import { BOARD_SIZE } from '../../constants';
+import { BOARD_SIZE } from '../constants';
 
 function undoable(reducer) {
 

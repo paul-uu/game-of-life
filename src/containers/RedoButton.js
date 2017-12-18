@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Button from '../components/button';
-import  actions from '../redux/actions';
+import  actions from '../actions';
 
 const mapStateToProps = (state, ownProps) => {
   let isDisabled = state.future.length === 0;
