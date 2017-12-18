@@ -1,4 +1,3 @@
-import { combineReducers } from 'redux';
 import lifeBoard from './lifeBoard';
 import undoable from './undoable';
 

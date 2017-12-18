@@ -1,15 +1,10 @@
-import { BOARD_SIZE, RESET_BOARD } from '../../constants';
+import { BOARD_SIZE } from '../../constants';
 
 function undoable(reducer) {
 
   const initialState = {
     past: [],
-    //present: reducer(undefined, {}),
     present: reducer( generateBoard(BOARD_SIZE, false), {} ),
-    /*present: {
-      lifeBoard: reducer( generateBoard(BOARD_SIZE, false) , {} )
-    },
-    */
     future: []
   }
 
@@ -19,7 +14,6 @@ function undoable(reducer) {
     switch (action.type) {
 
       case 'UNDO':
-        console.log(state);
         const previous = past[past.length - 1];
         const newPast = past.slice(0, past.length - 1);
         return {
