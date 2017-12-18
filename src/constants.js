@@ -5,3 +5,5 @@ export const TOGGLE_CELL     = 'TOGGLE_CELL';
 export const BOARD_STEP      = 'BOARD_STEP';
 export const RESET_BOARD     = 'RESET_BOARD';
 export const RANDOMIZE_BOARD = 'RANDOMIZE_BOARD';
+export const UNDO            = 'UNDO';
+export const REDO            = 'REDO';

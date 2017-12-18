@@ -5,6 +5,7 @@ import Cell from './cell';
 class Board extends React.Component {
 
 	render() {
+		let self = this;
 		return (
 			<div className='board'>
 				{
@@ -18,7 +19,8 @@ class Board extends React.Component {
 											<Cell 
 												isAlive={val} 
 												key={"" + rowIndex + colIndex} 
-												onClick={this.props.toggleCell}
+												//onClick={this.props.toggleCell}
+												//onClick={ self.toggleCell }
 												row={rowIndex}
 												col={colIndex}
 											/>

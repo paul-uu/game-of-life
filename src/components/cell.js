@@ -1,18 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import store from '../redux/store';
+import actions from '../redux/actions';
+
 class Cell extends React.Component {
 
 	toggleCell() {
-		this.props.onClick( this.props.row, this.props.col );
+		store.dispatch( actions.toggleCell(this.props.row, this.props.col, !this.props.isAlive) );
 	}
+
 	render() {
 		let cssClasses = this.props.isAlive ? 'cell alive' : 'cell dead';
 		let self = this;
 		return (
 			<span 
 				className={cssClasses} 
-				onClick={this.toggleCell.bind(self)}>
+				onClick={self.toggleCell.bind(this)}>
 			</span>
 		)
 	}
