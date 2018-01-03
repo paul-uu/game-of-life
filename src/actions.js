@@ -8,11 +8,11 @@ import {
 } from './constants';
 
 const actions = {
-	toggleCell: (row, col, updateTo) => ({
+	toggleCell: (row, col, isAlive) => ({
 		type: TOGGLE_CELL,
 		row,
 		col,
-		updateTo
+		updateTo: !isAlive
 	}),
 	boardStep: () => ({
 		type: BOARD_STEP

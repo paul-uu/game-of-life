@@ -33,7 +33,7 @@ function undoable(reducer) {
         const newPresent = reducer(present, action);
         if (present === newPresent)
           return state;
-
+          
         return {
           past: [...past, present],
           present: newPresent,

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Cell from './cell';
+import CellContainer from  '../containers/CellContainer';
 
 class Board extends React.Component {
 
@@ -15,11 +15,11 @@ class Board extends React.Component {
 								{
 									val.map((val, colIndex) => {
 										return (
-											<Cell 
-												isAlive={val} 
+											<CellContainer 
+												isAlive={val}
 												key={"" + rowIndex + colIndex} 
 												row={rowIndex}
-												col={colIndex}
+												col={colIndex}												
 											/>
 										)
 									})
