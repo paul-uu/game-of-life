@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import store from '../store';
-import actions from '../actions';
+class Cell extends Component {
 
-class Cell extends React.Component {
+	constructor(props) {
+		super(props);
+	}
 
 	render() {
 		let cssClasses = this.props.isAlive ? 'cell alive' : 'cell dead';

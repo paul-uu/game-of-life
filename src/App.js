@@ -10,15 +10,18 @@ import './App.css';
 import { BOARD_SIZE } from './constants';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+  }
 
   evaluateBoard() {
-    store.dispatch(actions.boardStep());
+    this.props.dispatch(actions.boardStep());
   }
   clearBoard() {
-    store.dispatch(actions.resetBoard(BOARD_SIZE, false));
+    this.props.dispatch(actions.resetBoard(BOARD_SIZE, false));
   }
   randomizeBoard() {
-    store.dispatch(actions.randomizeBoard());
+    this.props.dispatch(actions.randomizeBoard());
   }
 
   render() {
@@ -38,8 +41,4 @@ class App extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return state;
-}
-
-export default connect(mapStateToProps)(App);
+export default connect()(App);

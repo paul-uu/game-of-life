@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Board from '../components/board';
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state) => ({
   boardArray: state.present
 })
 

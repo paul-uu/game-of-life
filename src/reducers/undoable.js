@@ -10,7 +10,6 @@ function undoable(reducer) {
 
   return function(state = initialState, action) {
     const { past, present, future } = state;
-
     switch (action.type) {
 
       case 'UNDO':
@@ -33,7 +32,7 @@ function undoable(reducer) {
         const newPresent = reducer(present, action);
         if (present === newPresent)
           return state;
-          
+
         return {
           past: [...past, present],
           present: newPresent,
