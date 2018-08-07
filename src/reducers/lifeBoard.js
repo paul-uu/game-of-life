@@ -4,9 +4,17 @@ function lifeBoard(state = [], action) {
 	switch (action.type) {
 
 		case TOGGLE_CELL:
-      let updatedState = [...state];
-			updatedState[action.row][action.col] = action.updateTo;
-			return updatedState;
+			return state.map((rowArr, rowIndex) => {
+				if (rowIndex === action.row) {
+					return rowArr.map((rowCol, index) => {
+						let isAlive = index === action.col
+							? action.updateTo
+							: rowCol;
+						return isAlive;
+					});
+				}
+				return rowArr;
+			});
 
 		case BOARD_STEP:
 			let current = state;
