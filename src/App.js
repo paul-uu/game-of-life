@@ -4,15 +4,11 @@ import LifeBoardContainer from './containers/LifeBoardContainer';
 import Button from './components/button';
 import UndoButton from './containers/UndoButton';
 import RedoButton from './containers/RedoButton';
-import store from './store';
 import actions from './actions';
 import './App.css';
 import { BOARD_SIZE } from './constants';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   evaluateBoard() {
     this.props.dispatch(actions.boardStep());
@@ -22,6 +18,10 @@ class App extends Component {
   }
   randomizeBoard() {
     this.props.dispatch(actions.randomizeBoard());
+  }
+
+  componentDidMount() {
+    this.clearBoard();
   }
 
   render() {

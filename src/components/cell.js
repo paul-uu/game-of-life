@@ -2,11 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class Cell extends Component {
-
-	constructor(props) {
-		super(props);
-	}
-
 	render() {
 		let cssClasses = this.props.isAlive ? 'cell alive' : 'cell dead';
 		let self = this;

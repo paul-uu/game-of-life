@@ -1,10 +1,8 @@
-import { BOARD_SIZE } from '../constants';
-
 function undoable(reducer) {
 
   const initialState = {
     past: [],
-    present: reducer( generateBoard(BOARD_SIZE, false), {} ),
+    present: [],
     future: []
   }
 
@@ -41,17 +39,5 @@ function undoable(reducer) {
     }
   }
 }
-
-function generateBoard(size, cellValue) {
-	let newBoard = [];
-	for (let i = 0; i < size; i++) {
-		newBoard[i] = [];
-		for (let j = 0; j < size; j++) {
-			newBoard[i][j] = cellValue === undefined ? Math.random() >= 0.5 : false;
-		}
-	}
-	return newBoard;
-}
-
 
 export default undoable;

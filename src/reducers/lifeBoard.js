@@ -4,7 +4,7 @@ function lifeBoard(state = [], action) {
 	switch (action.type) {
 
 		case TOGGLE_CELL:
-      let updatedState = new Array(...state);
+      let updatedState = [...state];
 			updatedState[action.row][action.col] = action.updateTo;
 			return updatedState;
 
@@ -39,7 +39,6 @@ function lifeBoard(state = [], action) {
 			});
 
     case RESET_BOARD:
-      console.log('reset board');
 			return generateBoard(action.size, action.cellValue);
 
 		case RANDOMIZE_BOARD:

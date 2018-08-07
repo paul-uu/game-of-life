@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CellContainer from '../containers/CellContainer';
+import Cell from './cell';
 
 class Board extends React.Component {
 
@@ -8,18 +8,19 @@ class Board extends React.Component {
 		return (
 			<div className='board'>
 				{
-					this.props.boardArray.map( (val, index) => {
+					this.props.boardArray.map( (rowArr, index) => {
 						let rowIndex = index;
 						return (
 							<div className='board__row' key={rowIndex}>
 								{
-									val.map((val, colIndex) => {
+									rowArr.map((cellIsAlive, colIndex) => {
 										return (
-											<CellContainer
-												isAlive={val}
+											<Cell
+												isAlive={cellIsAlive}
 												key={"" + rowIndex + colIndex} 
 												row={rowIndex}
-												col={colIndex}												
+												col={colIndex}
+												toggleCell={this.props.toggleCell.bind(null, rowIndex, colIndex, cellIsAlive)}
 											/>
 										)
 									})
